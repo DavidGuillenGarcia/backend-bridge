@@ -1,6 +1,6 @@
 let http = require("http");
 
-const dt = require("./date");
+const dt = require(".");
 
 const Logger = require("logplease");
 const logger = Logger.create("utils");
