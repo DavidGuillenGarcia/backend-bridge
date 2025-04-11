@@ -1,18 +1,12 @@
 let http = require("http");
-
-const dt = require("./date");
-
-const Logger = require("logplease");
-const logger = Logger.create("utils");
-logger.debug(`This is a debug message`);
-logger.log(`This is a log message`); // alias for debug()
-logger.info(`This is a info message`);
-logger.warn(`This is a warning`);
-logger.error(`This is an error`);
+const fs = require("fs");
 
 http
   .createServer((req, res) => {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("Server is running properly at " + dt.myDateTime());
+    fs.readFile("index.html", (err, data) => {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write(data);
+      return res.end();
+    });
   })
   .listen(8082);
