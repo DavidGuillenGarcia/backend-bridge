@@ -5,27 +5,24 @@ const data = require("./data.json");
 const express = require("express");
 const cors = require("cors");
 
-let animals = data.animals;
-
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.get("/animals", (req, res) => {
-  res.send(animals);
+  res.send(data.animals);
 });
 
 app.post("/animals", (req, res) => {
-  animals.push({
+  data.animals.push({
     name: req.body.name,
     strength: req.body.strength,
   });
-  res.sendStatus(200);
-  console.log(req.body);
+  res.sendStatus(201);
 });
 
 app.get("/animals/:id", (req, res) => {
-  res.send(animals[req.params.id]);
+  res.send(data.animals[req.params.id]);
 });
 
 app.listen(port, () => {
