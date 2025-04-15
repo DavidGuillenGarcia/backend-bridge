@@ -14,10 +14,16 @@ app.get("/", (req, res) => {
 
 app.get("/my-name/:name", (req, res) => {
   res.send(
-    `Hello ${toUpperCase(req.params.name)} and has ${
-      req.params.name.length
-    } characters.`
+    `Hello ${toUpperCase(req.params.name)} ${toUpperCase(
+      req.query.surname
+    )}, your name + surname are  ${
+      req.params.name.length + req.query.surname.length
+    } characters total.`
   );
+});
+
+app.get("/my-name/", (req, res) => {
+  res.send(`Hello ${toUpperCase(req.query.surname)}`);
 });
 
 app.listen(port, () => {
