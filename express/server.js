@@ -1,7 +1,10 @@
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
-const port = 3000;
+app.use(cors());
+
+const port = 8080;
 let url = `http://localhost:${port}`;
 
 const toUpperCase = (str) => {
@@ -9,7 +12,11 @@ const toUpperCase = (str) => {
 };
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  const data = {
+    name: "Goku",
+    ki: "27",
+  };
+  res.send(data);
 });
 
 app.get("/my-name/:name", (req, res) => {

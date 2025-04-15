@@ -1,7 +1,9 @@
-let endpoint = prompt("Enter an URL");
+const characterName = document.getElementById("name");
+const characterKi = document.getElementById("ki");
 
-fetch(`http://localhost:8080/${endpoint}`).then((res) =>
+fetch(`http://localhost:8080`).then((res) =>
   res.json().then((data) => {
-    console.log(data);
+    characterName.innerText = data.name;
+    characterKi.innerText = data.ki;
   })
 );
