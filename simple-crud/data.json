@@ -1,0 +1,24 @@
+{
+  "animals": [
+    {
+      "name": "Cat",
+      "strength": "2"
+    },
+    {
+      "name": "Dog",
+      "strength": "4"
+    },
+    {
+      "name": "Beaver",
+      "strength": "3"
+    },
+    {
+      "name": "Elephant",
+      "strength": "8"
+    },
+    {
+      "name": "Hippo",
+      "strength": "11"
+    }
+  ]
+}
