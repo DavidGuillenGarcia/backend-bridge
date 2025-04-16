@@ -4,11 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Client-side</title>
+    <link href="../src/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/styles.css" />
   </head>
   <body>
-    <input type="text" id="name" />
-    <input type="text" id="strength" />
-    <input type="button" value="Submit" id="submit" />
+    <div class="content flex flex-col justify-center items-center">
+      <div
+        class="form flex flex-col justify-center items-center gap-8 shadow-xl px-12 py-10 rounded-md"
+      >
+        <span class="text-3xl mb-2">Create an animal</span>
+        <div
+          class="input-container flex flex-col justify-center items-center gap-3"
+        >
+          <input
+            type="text"
+            id="name"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="Animal name"
+          />
+          <input
+            type="text"
+            id="strength"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="Animal strength"
+          />
+        </div>
+
+        <input
+          type="button"
+          value="Submit"
+          id="submit"
+          class="border-1 border-white rounded-md bg-blue-500 text-white min-w-xs min-h-9 text-lg cursor-pointer"
+        />
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
