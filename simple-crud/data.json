@@ -2,23 +2,23 @@
   "animals": [
     {
       "name": "Cat",
-      "strength": "2"
+      "strength": 2
     },
     {
       "name": "Dog",
-      "strength": "4"
+      "strength": 4
     },
     {
       "name": "Beaver",
-      "strength": "3"
+      "strength": 3
     },
     {
       "name": "Elephant",
-      "strength": "8"
+      "strength": 8
     },
     {
       "name": "Hippo",
-      "strength": "11"
+      "strength": 11
     }
   ]
 }

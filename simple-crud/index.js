@@ -9,11 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/animals", (req, res) => {
+app.get("/", (req, res) => {
   res.send(data.animals);
 });
 
-app.post("/animals", (req, res) => {
+app.post("/", (req, res) => {
   data.animals.push({
     name: req.body.name,
     strength: req.body.strength,
@@ -21,7 +21,7 @@ app.post("/animals", (req, res) => {
   res.sendStatus(201);
 });
 
-app.get("/animals/:id", (req, res) => {
+app.get("/:id", (req, res) => {
   res.send(data.animals[req.params.id]);
 });
 
