@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   data.animals.push({
+    id: req.body.id,
     name: req.body.name,
     strength: req.body.strength,
   });
@@ -23,6 +24,20 @@ app.post("/", (req, res) => {
 
 app.get("/:id", (req, res) => {
   res.send(data.animals[req.params.id]);
+});
+
+app.delete("/:id", (req, res) => {
+  const idToDelete = Number(req.params.id);
+  const filteredAnimals = data.animals.filter(
+    (animal) => animal.id !== idToDelete
+  );
+
+  if (filteredAnimals.length == data.animals.length) {
+    res.sendStatus(404);
+  } else {
+    data.animals = filteredAnimals;
+    res.sendStatus(200);
+  }
 });
 
 app.listen(port, () => {
