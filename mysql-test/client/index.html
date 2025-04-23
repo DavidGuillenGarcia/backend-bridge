@@ -37,7 +37,41 @@
           <input
             type="button"
             value="Submit"
-            id="submit"
+            id="submit-btn"
+            class="border-1 border-white rounded-md bg-blue-500 text-white min-w-xs min-h-9 text-lg cursor-pointer"
+          />
+        </div>
+      </div>
+      <div
+        id="update-city-container"
+        class="form flex flex-col justify-center items-center gap-8 shadow-xl px-12 py-10 rounded-md element-hidden"
+      >
+        <span class="text-3xl mb-2">Update a city</span>
+        <div
+          class="input-container flex flex-col justify-center items-center gap-3"
+        >
+          <input
+            type="text"
+            id="updated-name"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="New City name"
+            required
+          />
+          <input
+            type="text"
+            id="updated-country"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="New Country"
+            required
+          />
+        </div>
+        <div
+          class="btn-container flex flex-col justify-center items-center gap-2"
+        >
+          <input
+            type="button"
+            value="Update city"
+            id="update-btn"
             class="border-1 border-white rounded-md bg-blue-500 text-white min-w-xs min-h-9 text-lg cursor-pointer"
           />
         </div>

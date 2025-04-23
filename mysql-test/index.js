@@ -45,6 +45,21 @@ app.post("/cities", (req, res) => {
   });
 });
 
+app.put("/cities/:id", (req, res) => {
+  const cityName = req.body.name;
+  const country = req.body.country;
+  const id = req.params.id;
+
+  let sql = `UPDATE cities SET name = '${cityName}', country = '${country}' WHERE id = ${id}`;
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.send("City updated");
+    }
+  });
+});
+
 app.delete("/cities/:id", (req, res) => {
   const cityId = req.params.id;
   let sql = `DELETE FROM cities WHERE (id) = ${cityId}`;
