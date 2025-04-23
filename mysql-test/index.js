@@ -25,10 +25,8 @@ app.get("/cities", (req, res) => {
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
-      res.sendStatus(400);
     } else {
       res.send(result);
-      res.sendStatus(200);
     }
   });
 });
@@ -38,9 +36,20 @@ app.post("/cities", (req, res) => {
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
-      res.sendStatus(400);
     } else {
-      res.sendStatus(201);
+      res.send("City created");
+    }
+  });
+});
+
+app.delete("/cities/:id", (req, res) => {
+  let sql = `DELETE FROM cities WHERE (id) = ${req.params.id}`;
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+      req.send(error);
+    } else {
+      res.send("Deleted city");
     }
   });
 });
