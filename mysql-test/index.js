@@ -32,7 +32,10 @@ app.get("/cities", (req, res) => {
 });
 
 app.post("/cities", (req, res) => {
-  let sql = `INSERT INTO cities (name, country) values ("${req.body.name}",'${req.body.country}')`;
+  const cityName = req.body.name;
+  const country = req.body.country;
+
+  let sql = `INSERT INTO cities (name, country) values ("${cityName}",'${country}')`;
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
@@ -43,13 +46,14 @@ app.post("/cities", (req, res) => {
 });
 
 app.delete("/cities/:id", (req, res) => {
-  let sql = `DELETE FROM cities WHERE (id) = ${req.params.id}`;
+  const cityId = req.params.id;
+  let sql = `DELETE FROM cities WHERE (id) = ${cityId}`;
   db.query(sql, (error, result) => {
-    if (error) {
-      console.log(error);
-      req.send(error);
-    } else {
+    if (error) throw error;
+    if (result.affectedRows > 0) {
       res.send("Deleted city");
+    } else {
+      res.status(404).send("City not found");
     }
   });
 });
