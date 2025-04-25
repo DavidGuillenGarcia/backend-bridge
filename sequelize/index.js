@@ -6,8 +6,8 @@ const password = "root1234";
 
 const express = require("express");
 const cors = require("cors");
-const mysql = require("mysql2");
-const { Sequelize } = require("sequelize");
+
+const { Sequelize, DataTypes } = require("sequelize");
 const app = express();
 
 app.use(express.json());
@@ -19,11 +19,31 @@ const sequelize = new Sequelize(database, user, password, {
 });
 
 try {
-  await sequelize.authenticate();
+  sequelize.authenticate().then();
   console.log("Connection has been established successfully.");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
 }
+
+const User = sequelize.define(
+  "User",
+  {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+    },
+  },
+  {}
+);
+
+User.sync();
+
+app.get("/", (req, res) => {
+  res.send("It works");
+});
 
 app.listen(port, () => {
   console.log(`Listen on ${baseURL}`);
