@@ -11,7 +11,11 @@ const createBook = async (req, res) => {
     author: req.body.author,
     description: req.body.description,
   });
-  res.status(201).send({ id: createdBook.id });
+  if (createBook) {
+    res.status(201).send({ id: createdBook.id });
+  } else {
+    res.send(res);
+  }
 };
 
 const updateBook = async (req, res) => {
