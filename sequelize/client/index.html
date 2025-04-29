@@ -12,22 +12,29 @@
       <div
         class="form flex flex-col justify-center items-center gap-8 shadow-xl px-12 py-10 rounded-md"
       >
-        <span class="text-3xl mb-2">Create a city</span>
+        <span class="text-3xl mb-2">Create a book</span>
         <div
           class="input-container flex flex-col justify-center items-center gap-3"
         >
           <input
             type="text"
-            id="name"
+            id="book-title"
             class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
-            placeholder="City name"
+            placeholder="Title of the book"
             required
           />
           <input
             type="text"
-            id="country"
+            id="book-author"
             class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
-            placeholder="Country"
+            placeholder="Author of the book"
+            required
+          />
+          <input
+            type="text"
+            id="book-description"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="Description of the book"
             required
           />
         </div>
@@ -43,25 +50,32 @@
         </div>
       </div>
       <div
-        id="update-city-container"
+        id="update-book-container"
         class="form flex flex-col justify-center items-center gap-8 shadow-xl px-12 py-10 rounded-md element-hidden"
       >
-        <span class="text-3xl mb-2">Update a city</span>
+        <span class="text-3xl mb-2">Update a book</span>
         <div
           class="input-container flex flex-col justify-center items-center gap-3"
         >
           <input
             type="text"
-            id="updated-name"
+            id="book-title-updated"
             class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
-            placeholder="New City name"
+            placeholder="New book title"
             required
           />
           <input
             type="text"
-            id="updated-country"
+            id="book-author-updated"
             class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
-            placeholder="New Country"
+            placeholder="New author"
+            required
+          />
+          <input
+            type="text"
+            id="book-description-updated"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="New description"
             required
           />
         </div>
@@ -70,26 +84,27 @@
         >
           <input
             type="button"
-            value="Update city"
+            value="Update book"
             id="update-btn"
             class="border-1 border-white rounded-md bg-blue-500 text-white min-w-xs min-h-9 text-lg cursor-pointer"
           />
         </div>
       </div>
       <table
-        class="city-list shadow-xl rounded-md min-w-sm border-collapse table-auto p-1"
+        class="book-list shadow-xl rounded-md min-w-sm border-collapse table-auto p-1"
       >
         <thead class="bg-gray-200">
           <tr class="border border-gray-300 ...">
-            <th class="py-1 text-lg">City Name</th>
-            <th class="py-1 text-lg">Country</th>
-            <th class="py-1 text-lg">Actions</th>
+            <th class="py-1 px-2 text-lg">Book title</th>
+            <th class="py-1 px-2 text-lg">Author</th>
+            <th class="py-1 px-2 text-lg">Description</th>
+            <th class="py-1 px-2 text-lg">Actions</th>
           </tr>
         </thead>
-        <tbody id="city-list"></tbody>
+        <tbody id="book-list"></tbody>
       </table>
     </div>
 
-    <script src="script.js"></script>
+    <script src="./JS/script.js"></script>
   </body>
 </html>

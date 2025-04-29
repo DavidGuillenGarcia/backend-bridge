@@ -8,12 +8,13 @@ const Book = db.sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    author: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    length: {
-      type: DataTypes.INTEGER,
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {}
