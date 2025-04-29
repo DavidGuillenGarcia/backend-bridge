@@ -19,6 +19,4 @@ const Book = db.sequelize.define(
   {}
 );
 
-Book.sync();
-
 module.exports = Book;
