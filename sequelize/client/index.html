@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client-side</title>
+    <link href="../src/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/styles.css" />
+  </head>
+  <body>
+    <div class="content flex items-center justify-around">
+      <div
+        class="form flex flex-col justify-center items-center gap-8 shadow-xl px-12 py-10 rounded-md"
+      >
+        <span class="text-3xl mb-2">Create a city</span>
+        <div
+          class="input-container flex flex-col justify-center items-center gap-3"
+        >
+          <input
+            type="text"
+            id="name"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="City name"
+            required
+          />
+          <input
+            type="text"
+            id="country"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="Country"
+            required
+          />
+        </div>
+        <div
+          class="btn-container flex flex-col justify-center items-center gap-2"
+        >
+          <input
+            type="button"
+            value="Submit"
+            id="submit-btn"
+            class="border-1 border-white rounded-md bg-blue-500 text-white min-w-xs min-h-9 text-lg cursor-pointer"
+          />
+        </div>
+      </div>
+      <div
+        id="update-city-container"
+        class="form flex flex-col justify-center items-center gap-8 shadow-xl px-12 py-10 rounded-md element-hidden"
+      >
+        <span class="text-3xl mb-2">Update a city</span>
+        <div
+          class="input-container flex flex-col justify-center items-center gap-3"
+        >
+          <input
+            type="text"
+            id="updated-name"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="New City name"
+            required
+          />
+          <input
+            type="text"
+            id="updated-country"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="New Country"
+            required
+          />
+        </div>
+        <div
+          class="btn-container flex flex-col justify-center items-center gap-2"
+        >
+          <input
+            type="button"
+            value="Update city"
+            id="update-btn"
+            class="border-1 border-white rounded-md bg-blue-500 text-white min-w-xs min-h-9 text-lg cursor-pointer"
+          />
+        </div>
+      </div>
+      <table
+        class="city-list shadow-xl rounded-md min-w-sm border-collapse table-auto p-1"
+      >
+        <thead class="bg-gray-200">
+          <tr class="border border-gray-300 ...">
+            <th class="py-1 text-lg">City Name</th>
+            <th class="py-1 text-lg">Country</th>
+            <th class="py-1 text-lg">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="city-list"></tbody>
+      </table>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
