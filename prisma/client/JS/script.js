@@ -46,7 +46,7 @@ const getBooks = () => {
       <td class="py-1 px-2 text-lg">${book.title}</td>
       <td class="py-1 px-2 text-lg">${book.author}</td>
       <td class="py-1 px-2 text-lg">${book.description}</td>
-      <td class="py-1 px-2 flex justify-center gap-2"><button onClick="updateFormDisplay(${book.id})" class="edit-btn border-1 border-white rounded-md bg-yellow-400 text-black flex text-lg cursor-pointer p-2"><img src="../src/images/edit.svg"/></button><button onClick="deleteBook(${book.id})" class="delete-btn border-1 border-white rounded-md bg-red-500 text-white flex text-lg cursor-pointer p-2"><img src="../src/images/delete.svg"/></button></td>
+      <td class="py-1 px-2 flex justify-center gap-2"><button onClick="updateFormDisplay(${book.id})" class="edit-btn border-1 border-white rounded-md bg-yellow-400 text-black flex text-lg cursor-pointer p-2"><img src="./images/edit.svg"/></button><button onClick="deleteBook(${book.id})" class="delete-btn border-1 border-white rounded-md bg-red-500 text-white flex text-lg cursor-pointer p-2"><img src="./images/delete.svg"/></button></td>
     </tr>`;
       });
     });

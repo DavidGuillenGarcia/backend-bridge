@@ -3,11 +3,15 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Book {
-    id          Int      @id @default(autoincrement())
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    title       String   @db.VarChar(255)
-    author      String   @db.VarChar(255)
-    description String?  @db.VarChar(255)
+generator client {
+    provider = "prisma-client-js"
+}
+
+model book {
+    id          Int       @id @default(autoincrement())
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime? @updatedAt
+    title       String    @db.VarChar(255)
+    author      String    @db.VarChar(255)
+    description String?   @db.VarChar(255)
 }

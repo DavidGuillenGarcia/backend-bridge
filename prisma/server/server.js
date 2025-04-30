@@ -8,8 +8,7 @@ const prisma = new PrismaClient();
 const express = require("express");
 const cors = require("cors");
 
-const booksRouter = require("./routes/BookRoutes");
-const db = require("./connection");
+const booksRouter = require("./routes/BookRouter");
 
 const main = async () => {
   const app = express();
