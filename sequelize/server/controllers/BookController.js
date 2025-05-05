@@ -8,7 +8,8 @@ const getBooks = async (req, res) => {
 const createBook = async (req, res) => {
   const createdBook = await Book.create({
     title: req.body.title,
-    author: req.body.author,
+    AuthorId: req.body.author_id,
+    length: req.body.length,
     description: req.body.description,
   });
   if (createBook) {
@@ -21,7 +22,8 @@ const createBook = async (req, res) => {
 const updateBook = async (req, res) => {
   const selectedBook = await Book.findByPk(req.params.id);
   selectedBook.title = req.body.title;
-  selectedBook.author = req.body.author;
+  selectedBook.AuthorId = req.body.author_id;
+  selectedBook.length = req.body.length;
   selectedBook.description = req.body.description;
 
   await selectedBook.save();

@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 
 const booksRouter = require("./routes/BookRoutes");
+const authorRouter = require("./routes/AuthorRoutes");
 
 const main = () => {
   const app = express();
@@ -12,6 +13,7 @@ const main = () => {
   app.use(express.json());
   app.use(cors());
   app.use("/books", booksRouter);
+  app.use("/authors", authorRouter);
 
   app.get("/", (req, res) => {
     res.send("It works");
