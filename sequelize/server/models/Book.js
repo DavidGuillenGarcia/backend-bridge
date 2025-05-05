@@ -1,5 +1,6 @@
 const db = require("../connection");
 const { DataTypes } = require("sequelize");
+const Author = require("./Author");
 
 const Book = db.sequelize.define(
   "Book",
@@ -9,10 +10,9 @@ const Book = db.sequelize.define(
       allowNull: false,
       notEmpty: true,
     },
-    author: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      notEmpty: true,
+    length: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     description: {
       type: DataTypes.STRING,
@@ -21,5 +21,11 @@ const Book = db.sequelize.define(
   },
   {}
 );
+
+Book.belongsTo(Author);
+
+Author.hasMany(Book);
+
+Book.sync();
 
 module.exports = Book;

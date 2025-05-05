@@ -5,7 +5,6 @@ const express = require("express");
 const cors = require("cors");
 
 const booksRouter = require("./routes/BookRoutes");
-const db = require("./connection");
 
 const main = () => {
   const app = express();
@@ -13,8 +12,6 @@ const main = () => {
   app.use(express.json());
   app.use(cors());
   app.use("/books", booksRouter);
-
-  db.sequelize.sync();
 
   app.get("/", (req, res) => {
     res.send("It works");
