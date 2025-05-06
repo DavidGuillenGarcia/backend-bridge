@@ -14,14 +14,14 @@ const getAuthors = async (req, res) => {
 
 const createAuthor = async (req, res) => {
   const { name, nacionality, gender } = req.body;
-  const result = await prisma.author.create({
+  const createdAuthor = await prisma.author.create({
     data: {
       name,
       nacionality,
       gender,
     },
   });
-  res.json(result);
+  res.json(createdAuthor);
 };
 
 const updateAuthor = async (req, res) => {
