@@ -1,3 +1,4 @@
+const Author = require("../models/Author");
 const Book = require("../models/Book");
 
 const getBooks = async (req, res) => {
@@ -6,9 +7,13 @@ const getBooks = async (req, res) => {
 };
 
 const createBook = async (req, res) => {
+  const selectedAuthor = await Author.findOne({
+    where: { name: req.body.author_name },
+  });
+  console.log(selectedAuthor);
   const createdBook = await Book.create({
     title: req.body.title,
-    AuthorId: req.body.author_id,
+    AuthorId: selectedAuthor.id,
     length: req.body.length,
     description: req.body.description,
   });

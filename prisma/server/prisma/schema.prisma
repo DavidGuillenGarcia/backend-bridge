@@ -7,11 +7,23 @@ generator client {
     provider = "prisma-client-js"
 }
 
-model book {
+model Author {
+    id          Int       @id @default(autoincrement())
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime? @updatedAt
+    name        String    @db.VarChar(255)
+    nacionality String?   @db.VarChar(255)
+    gender      String?   @db.VarChar(255)
+    books       Book[]
+}
+
+model Book {
     id          Int       @id @default(autoincrement())
     createdAt   DateTime  @default(now())
     updatedAt   DateTime? @updatedAt
     title       String    @db.VarChar(255)
-    author      String    @db.VarChar(255)
+    length      Int
+    author      Author    @relation(fields: [author_id], references: [id])
+    author_id   Int
     description String?   @db.VarChar(255)
 }

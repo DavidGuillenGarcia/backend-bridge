@@ -11,11 +11,10 @@ const Author = db.sequelize.define(
     },
     nacionality: {
       type: DataTypes.STRING,
-      allowNull: false,
-      notEmpty: true,
+      allowNull: true,
     },
     gender: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
     },
   },

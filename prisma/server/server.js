@@ -8,14 +8,16 @@ const prisma = new PrismaClient();
 const express = require("express");
 const cors = require("cors");
 
-const booksRouter = require("./routes/BookRouter");
+const bookRouter = require("./routes/BookRouter");
+const authorRouter = require("./routes/AuthorRouter");
 
 const main = async () => {
   const app = express();
 
   app.use(express.json());
   app.use(cors());
-  app.use("/books", booksRouter);
+  app.use("/authors", authorRouter);
+  app.use("/books", bookRouter);
 
   app.get("/", (req, res) => {
     res.send("It works");
