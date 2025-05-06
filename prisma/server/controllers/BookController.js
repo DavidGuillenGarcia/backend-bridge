@@ -13,17 +13,20 @@ const getBooks = async (req, res) => {
 };
 
 const createBook = async (req, res) => {
-  const { title, length, description, author } = req.body;
-  const selectedAuthorId = prisma.author.findFirst(
+  const { title, length, author_name, description } = req.body;
+  const selectedAuthor = await prisma.author.findFirst(
     { select: { id: true } },
-    { where: { name: author } }
+    { where: { name: author_name } }
   );
+
+  const selectedAuthorId = selectedAuthor.id;
+
   const result = await prisma.book.create({
     data: {
       title,
       length,
       description,
-      selectedAuthorId,
+      author_id: selectedAuthorId,
     },
   });
   res.json(result);
@@ -31,14 +34,16 @@ const createBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
   const { id } = req.params;
-  const { title, length, author, description } = req.body;
-  const selectedAuthorId = prisma.author.findFirst(
-    { select: id },
-    { where: { name: author } }
+  const { title, length, author_name, description } = req.body;
+  const selectedAuthor = prisma.author.findFirst(
+    { select: { id: true } },
+    { where: { name: author_name } }
   );
+  const selectedAuthorId = selectedAuthor.id;
+
   const selectedBook = await prisma.book.update({
     where: { id: Number(id) },
-    data: { title, length, selectedAuthorId, description },
+    data: { title, length, author_id: selectedAuthorId, description },
   });
   res.json(selectedBook);
 };
