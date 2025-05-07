@@ -14,11 +14,6 @@ const Book = db.sequelize.define(
       allowNull: false,
       notEmpty: true,
     },
-    publish_year: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      notEmpty: true,
-    },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: true,
