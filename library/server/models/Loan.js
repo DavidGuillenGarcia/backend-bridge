@@ -25,8 +25,14 @@ const Loan = db.sequelize.define(
   {}
 );
 
-Loan.hasMany(Book);
-Loan.hasMany(Member);
+Book.belongsToMany(Member, { through: Loan });
+Member.belongsToMany(Book, { through: Loan });
+
+Loan.belongsTo(Book);
+Loan.belongsTo(Member);
+
+Book.hasMany(Loan);
+Member.hasMany(Loan);
 
 Loan.sync();
 
