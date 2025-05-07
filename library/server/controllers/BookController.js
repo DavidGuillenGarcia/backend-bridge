@@ -9,7 +9,7 @@ const createBook = async (req, res) => {
   const createdBook = await Book.create({
     title: req.body.title,
     author: req.body.author,
-    publish_date: req.body.publish_date,
+    publish_date: req.body.publication_year,
     stock: req.body.stock,
   });
   if (createBook) {
@@ -23,7 +23,7 @@ const updateBook = async (req, res) => {
   const selectedBook = await Book.findByPk(req.params.id);
   selectedBook.title = req.body.title;
   selectedBook.author = req.body.author;
-  selectedBook.publish_date = req.body.publish_date;
+  selectedBook.publication_year = req.body.publication_year;
   selectedBook.stock = req.body.stock;
 
   await selectedBook.save();
