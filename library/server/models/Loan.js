@@ -18,8 +18,7 @@ const Loan = db.sequelize.define(
     },
     return_date: {
       type: DataTypes.DATE,
-      allowNull: false,
-      notEmpty: false,
+      allowNull: true,
     },
   },
   {}
