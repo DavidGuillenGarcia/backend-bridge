@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client-side</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../src/styles.css" />
+  </head>
+  <body>
+    <div class="content flex items-center justify-around">
+      <div
+        class="form flex flex-col justify-center items-center gap-8 shadow-xl px-12 py-10 rounded-md"
+      >
+        <span class="text-3xl mb-2">Create a book</span>
+        <div
+          class="input-container flex flex-col justify-center items-center gap-3"
+        >
+          <input
+            type="text"
+            id="book-title"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="Title of the book"
+            required
+          />
+          <input
+            type="text"
+            id="book-author"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="Author of the book"
+            required
+          />
+          <input
+            type="text"
+            id="book-description"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="Description of the book"
+            required
+          />
+        </div>
+        <div
+          class="btn-container flex flex-col justify-center items-center gap-2"
+        >
+          <input
+            type="button"
+            value="Submit"
+            id="submit-btn"
+            class="border-1 border-white rounded-md bg-blue-500 text-white min-w-xs min-h-9 text-lg cursor-pointer"
+          />
+        </div>
+      </div>
+      <div
+        id="update-book-container"
+        class="form flex flex-col justify-center items-center gap-8 shadow-xl px-12 py-10 rounded-md element-hidden"
+      >
+        <span class="text-3xl mb-2">Update a book</span>
+        <div
+          class="input-container flex flex-col justify-center items-center gap-3"
+        >
+          <input
+            type="text"
+            id="book-title-updated"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="New book title"
+            required
+          />
+          <input
+            type="text"
+            id="book-author-updated"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="New author"
+            required
+          />
+          <input
+            type="text"
+            id="book-description-updated"
+            class="border-1 border-gray-400 rounded-md min-w-xs min-h-9 ps-3 text-lg"
+            placeholder="New description"
+            required
+          />
+        </div>
+        <div
+          class="btn-container flex flex-col justify-center items-center gap-2"
+        >
+          <input
+            type="button"
+            value="Update book"
+            id="update-btn"
+            class="border-1 border-white rounded-md bg-blue-500 text-white min-w-xs min-h-9 text-lg cursor-pointer"
+          />
+        </div>
+      </div>
+      <table
+        class="book-list shadow-xl rounded-md min-w-sm border-collapse table-auto p-1"
+      >
+        <thead class="bg-gray-200">
+          <tr class="border border-gray-300 ...">
+            <th class="py-1 px-2 text-lg">Book title</th>
+            <th class="py-1 px-2 text-lg">Author</th>
+            <th class="py-1 px-2 text-lg">Description</th>
+            <th class="py-1 px-2 text-lg">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="book-list"></tbody>
+      </table>
+    </div>
+    <script src="./JS/script.js"></script>
+  </body>
+</html>

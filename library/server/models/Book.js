@@ -1,11 +1,15 @@
 const db = require("../connection");
 const { DataTypes } = require("sequelize");
-const Author = require("./Author");
 
 const Book = db.sequelize.define(
   "Book",
   {
     title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      notEmpty: true,
+    },
+    author: {
       type: DataTypes.STRING,
       allowNull: false,
       notEmpty: true,
@@ -22,10 +26,6 @@ const Book = db.sequelize.define(
   },
   {}
 );
-
-Book.belongsTo(Author);
-
-Author.hasMany(Book);
 
 Book.sync();
 
