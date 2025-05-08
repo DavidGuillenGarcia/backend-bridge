@@ -8,8 +8,8 @@ const getLoans = async (req, res) => {
 };
 
 const createLoan = async (req, res) => {
-  const actualTime = new Date();
-  const deadline = new Date(actualTime.getTime() + 14 * 24 * 60 * 60 * 1000);
+  const currentDate = new Date();
+  const deadline = new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000);
   const selectedBook = await Book.findOne({
     where: { title: req.body.book_name },
   });
@@ -17,7 +17,7 @@ const createLoan = async (req, res) => {
     where: { name: req.body.member_name },
   });
   const createdLoan = await Loan.create({
-    loan_date: actualTime,
+    loan_date: today,
     deadline: deadline,
     BookId: selectedBook.id,
     MemberId: selectedMember.id,

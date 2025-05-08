@@ -4,6 +4,9 @@ const baseURL = `http://localhost:${port}`;
 const express = require("express");
 const cors = require("cors");
 
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+
 const bookRouter = require("./routes/BookRoutes");
 const memberRouter = require("./routes/MemberRoutes");
 const loanRouter = require("./routes/LoanRoutes");
@@ -16,6 +19,8 @@ const main = () => {
   app.use("/books", bookRouter);
   app.use("/members", memberRouter);
   app.use("/loans", loanRouter);
+
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   app.get("/", (req, res) => {
     res.send("It works");

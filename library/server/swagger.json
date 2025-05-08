@@ -1,0 +1,147 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Library API",
+    "description": "REST API for Testing and Prototyping",
+    "version": "1.0"
+  },
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Get all the books",
+        "description": "List all the books from the library",
+        "tags": ["Books"],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched all books from the library",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "stock": {
+                        "type": "number"
+                      },
+                      "createdAt": {
+                        "type": "date"
+                      },
+                      "updatedAt": {
+                        "type": "date"
+                      }
+                    },
+                    "example": {
+                      "id": 1,
+                      "title": "El señor de los anillos",
+                      "author": "J. R. Tolkien",
+                      "stock": 27,
+                      "createdAt": "2025-05-07 09:58:31",
+                      "uodatedAt": "2025-05-07 09:58:31"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "No books found"
+        }
+      },
+      "post": {
+        "summary": "Add a book",
+        "description": "Adds a new book to the library.",
+        "tags": ["Books"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "author", "publication_year", "stock"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "The Great Gatsby"
+                  },
+                  "author": {
+                    "type": "string",
+                    "example": "F. Scott Fitzgerald"
+                  },
+                  "publication_year": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "1925-04-10"
+                  },
+                  "stock": {
+                    "type": "integer",
+                    "example": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Book created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "The Great Gatsby"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "F. Scott Fitzgerald"
+                    },
+                    "publish_date": {
+                      "type": "string",
+                      "format": "date",
+                      "example": "1925-04-10"
+                    },
+                    "stock": {
+                      "type": "integer",
+                      "example": 10
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-05-08T12:00:00Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2025-05-08T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/members": {}
+  }
+}
