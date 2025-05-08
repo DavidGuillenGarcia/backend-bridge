@@ -43,4 +43,13 @@ const returnBook = async (req, res) => {
   res.status(200).send(selectedLoan);
 };
 
-module.exports = { getLoans, createLoan, returnBook };
+const getAllLoansPerMember = async (req, res) => {
+  const memberLoans = await Loan.findAll({
+    where: {
+      MemberId: req.query.MemberId,
+    },
+  });
+  res.status(200).send(memberLoans);
+};
+
+module.exports = { getLoans, createLoan, returnBook, getAllLoansPerMember };
