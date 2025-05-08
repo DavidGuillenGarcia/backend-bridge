@@ -34,6 +34,7 @@ const returnBook = async (req, res) => {
   const selectedLoan = await Loan.findAll({
     where: {
       BookId: req.query.BookId,
+      return_date: null,
     },
   });
 
