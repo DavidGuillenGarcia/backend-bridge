@@ -12,8 +12,8 @@ const createBook = async (req, res) => {
     publish_date: req.body.publication_year,
     stock: req.body.stock,
   });
-  if (createBook) {
-    res.status(201).send({ id: createdBook.id });
+  if (createdBook) {
+    res.status(201).send(createdBook);
   } else {
     res.send(res);
   }
@@ -27,17 +27,14 @@ const updateBook = async (req, res) => {
   selectedBook.stock = req.body.stock;
 
   await selectedBook.save();
-  res.status(200).send({ id: selectedBook.id });
+  res.status(200).send(selectedBook);
 };
 
 const deleteBook = async (req, res) => {
   const selectedBook = await Book.findByPk(req.params.id);
 
   await selectedBook.destroy();
-  res.status(200).send({ id: selectedBook.id });
+  res.status(200).send(selectedBook);
 };
 
-exports.createBook = createBook;
-exports.getBooks = getBooks;
-exports.updateBook = updateBook;
-exports.deleteBook = deleteBook;
+module.exports = { getBooks, createBook, updateBook, deleteBook };

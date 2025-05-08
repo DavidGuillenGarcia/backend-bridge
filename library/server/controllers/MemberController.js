@@ -18,5 +18,18 @@ const createMember = async (req, res) => {
   }
 };
 
-exports.getMembers = getMembers;
-exports.createMember = createMember;
+const updateMember = async (req, res) => {
+  const selectedMember = await Member.findByPk(req.params.id);
+  selectedMember.name = req.body.name;
+  await selectedMember.save();
+  res.status(200).send(selectedMember);
+};
+
+const deleteMember = async (req, res) => {
+  const selectedMember = await Member.findByPk(req.params.id);
+
+  await selectedMember.destroy();
+  res.status(200).send(selectedMember);
+};
+
+module.exports = { getMembers, createMember, updateMember, deleteMember };
