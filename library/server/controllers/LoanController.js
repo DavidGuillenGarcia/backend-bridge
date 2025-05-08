@@ -29,5 +29,18 @@ const createLoan = async (req, res) => {
   }
 };
 
-exports.getLoans = getLoans;
-exports.createLoan = createLoan;
+const returnBook = async (req, res) => {
+  const actualTime = new Date();
+  const selectedLoan = await Loan.findAll({
+    where: {
+      BookId: req.query.BookId,
+    },
+  });
+
+  selectedLoan[0].return_date = actualTime;
+  await selectedLoan[0].save();
+
+  res.status(200).send(selectedLoan);
+};
+
+module.exports = { getLoans, createLoan, returnBook };
