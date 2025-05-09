@@ -16,10 +16,20 @@ const getLoans = async (req, res) => {
       getAllLoansPerMember(req, res);
     }
     if (pendingReturn === "true") {
-      getAllActiveLoansPerMember(req, res);
+      const filterStatus = {
+        MemberId: req.query.MemberId,
+        return_date: null,
+      };
+      getAllLoansFilteredPerMember(req, res, filterStatus);
     }
     if (pendingReturn === "false") {
-      getAllCompleteLoansPerMember(req, res);
+      const filterStatus = {
+        MemberId: req.query.MemberId,
+        return_date: {
+          [Op.not]: null,
+        },
+      };
+      getAllLoansFilteredPerMember(req, res, filterStatus);
     }
   }
 };
@@ -75,26 +85,11 @@ const getAllLoansPerMember = async (req, res) => {
   res.status(200).send(memberLoans);
 };
 
-const getAllActiveLoansPerMember = async (req, res) => {
+const getAllLoansFilteredPerMember = async (req, res, filterStatus) => {
   const activeMemberLoans = await Loan.findAll({
-    where: {
-      MemberId: req.query.MemberId,
-      return_date: null,
-    },
+    where: filterStatus,
   });
   res.status(200).send(activeMemberLoans);
-};
-
-const getAllCompleteLoansPerMember = async (req, res) => {
-  const completeMemberLoans = await Loan.findAll({
-    where: {
-      MemberId: req.query.MemberId,
-      return_date: {
-        [Op.not]: null,
-      },
-    },
-  });
-  res.status(200).send(completeMemberLoans);
 };
 
 module.exports = { getLoans, createLoan, returnBook, getAllLoansPerMember };
