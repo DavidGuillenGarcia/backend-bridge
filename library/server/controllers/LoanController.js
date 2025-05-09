@@ -6,37 +6,37 @@ const { Op } = require("sequelize");
 const getLoans = async (req, res) => {
   const MemberId = req.query.MemberId;
   const pendingReturn = req.query.pendingReturn;
+  let filterStatus;
 
-  if (!MemberId) {
-    getAllLoans(req, res);
-  }
-
-  if (MemberId != undefined) {
+  if (MemberId) {
     if (pendingReturn === undefined) {
-      getAllLoansPerMember(req, res);
-    }
-    if (pendingReturn === "true") {
-      const filterStatus = {
-        MemberId: req.query.MemberId,
-        return_date: null,
-      };
-      getAllLoansFilteredPerMember(req, res, filterStatus);
-    }
-    if (pendingReturn === "false") {
-      const filterStatus = {
-        MemberId: req.query.MemberId,
-        return_date: {
-          [Op.not]: null,
+      filterStatus = {
+        where: {
+          MemberId: req.query.MemberId,
         },
       };
-      getAllLoansFilteredPerMember(req, res, filterStatus);
+    }
+    if (pendingReturn === "true") {
+      filterStatus = {
+        where: {
+          MemberId: req.query.MemberId,
+          return_date: null,
+        },
+      };
+    }
+    if (pendingReturn === "false") {
+      filterStatus = {
+        where: {
+          MemberId: req.query.MemberId,
+          return_date: {
+            [Op.not]: null,
+          },
+        },
+      };
     }
   }
-};
-
-const getAllLoans = async (req, res) => {
-  const loanList = await Loan.findAll();
-  res.send(loanList);
+  const filteredLoans = await Loan.findAll(filterStatus);
+  res.status(200).send(filteredLoans);
 };
 
 const createLoan = async (req, res) => {
@@ -83,13 +83,6 @@ const getAllLoansPerMember = async (req, res) => {
     },
   });
   res.status(200).send(memberLoans);
-};
-
-const getAllLoansFilteredPerMember = async (req, res, filterStatus) => {
-  const activeMemberLoans = await Loan.findAll({
-    where: filterStatus,
-  });
-  res.status(200).send(activeMemberLoans);
 };
 
 module.exports = { getLoans, createLoan, returnBook, getAllLoansPerMember };
