@@ -4,14 +4,14 @@ const Book = require("../models/Book");
 
 const getLoans = async (req, res) => {
   const MemberId = req.query.MemberId;
-  const pendingReturn = req.query.pendingReturn;
+  const pendingReturn = Boolean(req.query.pendingReturn);
 
   if (!MemberId) {
     getAllLoans(req, res);
   }
 
   if (MemberId != undefined) {
-    if (pendingReturn != undefined) {
+    if (pendingReturn == true) {
       getAllActiveLoansPerMember(req, res);
     } else {
       getAllLoansPerMember(req, res);
