@@ -3,8 +3,25 @@ const Member = require("../models/Member");
 const Book = require("../models/Book");
 
 const getLoans = async (req, res) => {
+  const MemberId = req.query.MemberId;
+  const pendingReturn = req.query.pendingReturn;
+
+  if (!MemberId) {
+    getAllLoans(req, res);
+  }
+
+  if (MemberId != undefined) {
+    if (pendingReturn != undefined) {
+      getAllActiveLoansPerMember(req, res);
+    } else {
+      getAllLoansPerMember(req, res);
+    }
+  }
+};
+
+const getAllLoans = async (req, res) => {
   const loanList = await Loan.findAll();
-  res.status(200).send(loanList);
+  res.send(loanList);
 };
 
 const createLoan = async (req, res) => {
@@ -51,6 +68,16 @@ const getAllLoansPerMember = async (req, res) => {
     },
   });
   res.status(200).send(memberLoans);
+};
+
+const getAllActiveLoansPerMember = async (req, res) => {
+  const activeMemberLoans = await Loan.findAll({
+    where: {
+      MemberId: req.query.MemberId,
+      return_date: null,
+    },
+  });
+  res.status(200).send(activeMemberLoans);
 };
 
 module.exports = { getLoans, createLoan, returnBook, getAllLoansPerMember };
