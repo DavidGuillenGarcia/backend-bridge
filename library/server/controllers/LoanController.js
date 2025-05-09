@@ -1,20 +1,25 @@
 const Loan = require("../models/Loan");
 const Member = require("../models/Member");
 const Book = require("../models/Book");
+const { Op } = require("sequelize");
 
 const getLoans = async (req, res) => {
   const MemberId = req.query.MemberId;
-  const pendingReturn = Boolean(req.query.pendingReturn);
+  const pendingReturn = req.query.pendingReturn;
 
   if (!MemberId) {
     getAllLoans(req, res);
   }
 
   if (MemberId != undefined) {
-    if (pendingReturn == true) {
-      getAllActiveLoansPerMember(req, res);
-    } else {
+    if (pendingReturn === undefined) {
       getAllLoansPerMember(req, res);
+    }
+    if (pendingReturn === "true") {
+      getAllActiveLoansPerMember(req, res);
+    }
+    if (pendingReturn === "false") {
+      getAllCompleteLoansPerMember(req, res);
     }
   }
 };
@@ -78,6 +83,18 @@ const getAllActiveLoansPerMember = async (req, res) => {
     },
   });
   res.status(200).send(activeMemberLoans);
+};
+
+const getAllCompleteLoansPerMember = async (req, res) => {
+  const completeMemberLoans = await Loan.findAll({
+    where: {
+      MemberId: req.query.MemberId,
+      return_date: {
+        [Op.not]: null,
+      },
+    },
+  });
+  res.status(200).send(completeMemberLoans);
 };
 
 module.exports = { getLoans, createLoan, returnBook, getAllLoansPerMember };
