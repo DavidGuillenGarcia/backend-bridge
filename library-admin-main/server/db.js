@@ -1,13 +1,13 @@
 const { Sequelize } = require("sequelize");
 
 // Nos conectamos a la base de datos.
-const sequelize = new Sequelize("libraryadmin", "root", "root", {
+const sequelize = new Sequelize("libraryadmin", "root", "root1234", {
   host: "localhost",
   dialect: "mysql",
-  logging: false
-})
+  logging: false,
+});
 
-const db = {}
+const db = {};
 
 // Agregar sequelize al objeto db
 db.sequelize = sequelize;
