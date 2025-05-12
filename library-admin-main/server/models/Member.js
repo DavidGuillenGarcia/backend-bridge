@@ -1,10 +1,18 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db")
+const db = require("../db");
 
 const Member = db.sequelize.define(
   "Member",
   {
     name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
