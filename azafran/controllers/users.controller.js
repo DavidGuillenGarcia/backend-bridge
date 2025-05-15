@@ -1,4 +1,6 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 const User = require("../models/users");
 
 const login = async (req, res) => {
@@ -12,7 +14,10 @@ const login = async (req, res) => {
   console.log(userLogging);
   const match = await bcrypt.compare(passwordInput, userLogging.password);
   if (match) {
-    res.status(200).send(`Welcome ${userLogging.username}`);
+    const token = jwt.sign({ userId: User._id }, "your-secret-key", {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ token });
   } else {
     res.status(404).send("INCORRECT_USERNAME_OR_PASSWORD");
   }

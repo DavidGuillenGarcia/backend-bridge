@@ -3,6 +3,7 @@ const port = 8000;
 const cors = require("cors");
 const express = require("express");
 const dbConnection = require("./dbConnection");
+const verifyToken = require("./middlewares/auth");
 
 const usersRouter = require("./routes/users.routes");
 const ingredientsRouter = require("./routes/ingredients.routes");
@@ -13,7 +14,7 @@ const main = async () => {
   app.use(express.json());
 
   app.use("/", usersRouter);
-  app.use("/ingredients", ingredientsRouter);
+  app.use("/ingredients", verifyToken, ingredientsRouter);
 
   dbConnection();
 
