@@ -2,18 +2,18 @@ const port = 8000;
 
 const cors = require("cors");
 const express = require("express");
-const { Connection } = require("./Connection");
+const dbConnection = require("./dbConnection");
+
+const usersRouter = require("./routes/users.routes");
 
 const main = async () => {
   const app = express();
   app.use(cors());
   app.use(express.json());
 
-  const db = await Connection();
-  const collection = db.collection("products");
+  app.use("/", usersRouter);
 
-  const first = await collection.findOne();
-  console.log(first);
+  dbConnection();
 
   app.listen(port, () => {
     console.log(`App listening on http://localhost:${port}`);
