@@ -5,6 +5,7 @@ const express = require("express");
 const dbConnection = require("./dbConnection");
 
 const usersRouter = require("./routes/users.routes");
+const ingredientsRouter = require("./routes/ingredients.routes");
 
 const main = async () => {
   const app = express();
@@ -12,6 +13,7 @@ const main = async () => {
   app.use(express.json());
 
   app.use("/", usersRouter);
+  app.use("/ingredients", ingredientsRouter);
 
   dbConnection();
 

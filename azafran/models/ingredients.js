@@ -7,10 +7,10 @@ const ingredientsSchema = new mongoose.Schema({
   },
   userId: {
     type: String,
-    required: true,
   },
   quantity: {
     type: Number,
+    default: 1,
   },
   unit: {
     type: String,
