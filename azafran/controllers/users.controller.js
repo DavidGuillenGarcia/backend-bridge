@@ -1,20 +1,20 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = require("../config/keys");
 
 const User = require("../models/users");
 
 const login = async (req, res) => {
-  const usernameInput = req.body.username;
-  const passwordInput = req.body.password;
+  const { username, password } = req.body;
 
-  const userLogging = await User.findOne({ username: usernameInput }).exec();
+  const userLogging = await User.findOne({ username: username }).exec();
   if (!userLogging) {
     res.status(404).send("INCORRECT_USERNAME_OR_PASSWORD");
   }
   console.log(userLogging);
-  const match = await bcrypt.compare(passwordInput, userLogging.password);
+  const match = await bcrypt.compare(password, userLogging.password);
   if (match) {
-    const token = jwt.sign({ userId: userLogging._id }, "your-secret-key");
+    const token = jwt.sign({ userId: userLogging._id }, JWT_SECRET);
     console.log(userLogging._id);
     res.status(200).json({ token });
   } else {
@@ -23,13 +23,11 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  const usernameInput = req.body.username;
-  const passwordInput = req.body.password;
-
-  const hashedPassword = bcrypt.hashSync(passwordInput);
+  const { username, password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password);
 
   const newUser = new User({
-    username: usernameInput,
+    username: username,
     password: hashedPassword,
   });
   await newUser.save();
