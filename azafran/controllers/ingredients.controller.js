@@ -1,9 +1,14 @@
 const Ingredient = require("../models/ingredients");
 
 const createIngredient = async (req, res) => {
-  console.log(req);
-  const newIngredient = new Ingredient(req.body);
-  const match = await Ingredient.findOne({ name: newIngredient.name });
+  const ingredientInput = req.body;
+  ingredientInput.userId = req.userId;
+
+  const newIngredient = new Ingredient(ingredientInput);
+  const match = await Ingredient.findOne({
+    name: newIngredient.name,
+    userId: newIngredient.userId,
+  });
   if (match) {
     res.send("Ingredient already exists");
   } else {

@@ -6,7 +6,7 @@ const ingredientsSchema = new mongoose.Schema({
     required: true,
   },
   userId: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
   },
   quantity: {
     type: Number,

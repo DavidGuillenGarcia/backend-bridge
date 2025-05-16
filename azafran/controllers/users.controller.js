@@ -15,6 +15,7 @@ const login = async (req, res) => {
   const match = await bcrypt.compare(passwordInput, userLogging.password);
   if (match) {
     const token = jwt.sign({ userId: userLogging._id }, "your-secret-key");
+    console.log(userLogging._id);
     res.status(200).json({ token });
   } else {
     res.status(404).send("INCORRECT_USERNAME_OR_PASSWORD");
