@@ -37,5 +37,4 @@ const register = async (req, res) => {
   res.send(newUser);
 };
 
-exports.login = login;
-exports.register = register;
+module.exports = { login, register };

@@ -9,6 +9,7 @@ const createIngredient = async (req, res) => {
     name: newIngredient.name,
     userId: newIngredient.userId,
   });
+
   if (match) {
     res.send("Ingredient already exists");
   } else {
@@ -22,8 +23,8 @@ const updateQuantity = async (req, res) => {
   const quantityInput = req.body.quantity;
   const selectedIngredient = await Ingredient.findOne({ name: nameInput });
   selectedIngredient.quantity = quantityInput;
-  await selectedIngredient.save();
 
+  await selectedIngredient.save();
   res.send(selectedIngredient);
 };
 
@@ -36,6 +37,4 @@ const getAllIngredients = async (req, res) => {
   }
 };
 
-exports.createIngredient = createIngredient;
-exports.updateQuantity = updateQuantity;
-exports.getAllIngredients = getAllIngredients;
+module.exports = { createIngredient, updateQuantity, getAllIngredients };
