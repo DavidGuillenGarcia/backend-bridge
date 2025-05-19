@@ -1,9 +1,12 @@
 import * as cheerio from "cheerio";
 import axios from "axios";
 
+import dbConnection from "./connection.js";
+import Recipe from "./models/recipes.js";
+
 let arrayRecipes = [];
 
-const createRecipe = (title, description, $) => {
+const createRecipe = async (title, description, $) => {
   for (let index = 0; index < title.length; index++) {
     let cleanedDescription = $(description[index])
       .text()
@@ -15,10 +18,12 @@ const createRecipe = (title, description, $) => {
     };
     arrayRecipes.push(recipe);
   }
-  console.log(arrayRecipes);
+  await Recipe.insertMany(arrayRecipes);
 };
 
 const main = async () => {
+  dbConnection();
+
   for (let index = 0; index <= 3; index++) {
     const cheerioDocsResponse = await axios.get(
       `https://paulinacocina.net/recetas/page/${index}`
