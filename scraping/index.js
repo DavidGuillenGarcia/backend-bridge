@@ -18,7 +18,7 @@ const createRecipe = async (title, description, $) => {
     };
     arrayRecipes.push(recipe);
   }
-  await Recipe.insertMany(arrayRecipes);
+  //   await Recipe.insertMany(arrayRecipes);
 };
 
 const main = async () => {
