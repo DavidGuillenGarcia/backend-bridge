@@ -1,11 +1,14 @@
 import { Server } from "socket.io";
 
-const io = new Server(3000);
+const io = new Server(3000, {
+  cors: {
+    origin: "*",
+  },
+});
 
 io.on("connection", (socket) => {
-  socket.emit("Hello", "world");
-
-  socket.on("howdy", (arg) => {
+  socket.on("message", (arg) => {
+    io.emit("response", `${socket.id}: ${arg}`);
     console.log(arg);
   });
 });
