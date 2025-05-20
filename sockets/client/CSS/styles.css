@@ -1,0 +1,12 @@
+#content {
+  height: 100vh !important;
+}
+
+#content-container {
+  width: 50%;
+}
+
+.message-log {
+  height: 40vh;
+  width: 100%;
+}
