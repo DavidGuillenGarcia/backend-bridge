@@ -8,7 +8,11 @@ const io = new Server(3000, {
 
 io.on("connection", (socket) => {
   socket.on("message", (arg) => {
-    io.emit("response", `${socket.id}: ${arg}`);
-    console.log(arg);
+    const message = {
+      username: arg.username,
+      message: arg.message,
+    };
+    io.emit("response", message);
+    console.log(message);
   });
 });
